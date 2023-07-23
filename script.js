@@ -68,10 +68,13 @@ if(name && email && password && cPassword){
     if(allData){
     //    error.textContent="account already registered";
        alert("Account already registered.");
+       signupEmail.value="";
+      
     }else{
         if(password===cPassword){
             if (!isValidEmail(email)) {
                 alert("Invalid email format. Please enter a valid email address.");
+                lo
               }else{
                 localStorage.setItem(email, JSON.stringify({name,email, password}))
                 alert("account created SuccessFully")
@@ -113,19 +116,22 @@ function isValidEmail(email) {
 if(name && email && password){
     if(!isValidEmail(email)){
         alert("Invalid email format. Please enter a valid email address.");
+        loginEmail.value = "";
     }else{
         var storedData=JSON.parse(localStorage.getItem(email))
         if(storedData && storedData.password===password){
             displayUserData(storedData.name, email)
-        }else{
+        }else if(!storedData ){
             alert("Invalid username or password")
-        }
-       
-    }
-    loginName.value = "";
+             loginName.value = "";
     loginEmail.value = "";
     loginPassword.value = "";
+        }
+        
+    }
+   
 }
+
 else{
     alert("Please fill all the required fields.");
 }
@@ -152,10 +158,4 @@ logout.addEventListener("click", () => {
     loginPassword.value = "";
   });
   
-  goToLogin.addEventListener("click",()=>{
-    signupForm.style.display = "none";
-  loginForm.style.display = "block";
-  loginName.value = "";
-  loginEmail.value = "";
-  loginPassword.value = "";
-  })
+ 
