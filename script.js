@@ -68,7 +68,12 @@ if(name && email && password && cPassword){
     if(allData){
     //    error.textContent="account already registered";
        alert("Account already registered.");
-       signupEmail.value="";
+        
+    signupName.value = "";
+    signupEmail.value = "";
+    signupPassword.value = "";
+    confirmPassword.value = "";
+  
       
     }else{
         if(password===cPassword){
